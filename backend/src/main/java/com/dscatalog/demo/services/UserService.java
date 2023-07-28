@@ -9,9 +9,11 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dscatalog.demo.dto.InsertUserDTO;
 import com.dscatalog.demo.dto.RoleDTO;
 import com.dscatalog.demo.dto.UserDTO;
 import com.dscatalog.demo.entities.Role;
@@ -23,6 +25,9 @@ import com.dscatalog.demo.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class UserService {
+	
+	@Autowired
+	private BCryptPasswordEncoder hash;
 	
 	@Autowired
 	private UserRepository repository;
@@ -44,9 +49,10 @@ public class UserService {
 	}
 	
 	@Transactional
-	public UserDTO insert(UserDTO dto) {
+	public UserDTO insert(InsertUserDTO dto) {
 		User entity = new User();
 		copyDtoToEntity(dto, entity);
+		entity.setPassword(hash.encode(dto.getPassword()));
 		entity = repository.save(entity);
 		return new UserDTO(entity);
 	}
