@@ -10,6 +10,11 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 import com.dscatalog.demo.entities.Category;
 import com.dscatalog.demo.entities.Product;
@@ -21,10 +26,15 @@ public class ProductDTO implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Size(min = 3, max = 40, message = "Campo nome deve ter entr 3 e 40 caracteres")
+	@NotBlank(message = "Campo obrigatório")
 	private String name;
 	private String description;
+	@Positive(message = "O preço deve ser positivo")
 	private Double price;
 	private String imgUrl;
+	
+	@PastOrPresent(message = "Não é possível colocar uma data no futuro")
 	private Instant date;
 	
 	private List<CategoryDTO> categories = new ArrayList<>();

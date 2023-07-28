@@ -3,12 +3,15 @@ package com.dscatalog.demo.dto;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.constraints.NotBlank;
+
 import com.dscatalog.demo.entities.Role;
 import com.dscatalog.demo.entities.User;
 
 public class UserDTO {
 	
 	private Long id;
+	@NotBlank(message = "Campo obrigatório")
 	private String firstName;
 	private String lastName;
 	private String email;	
