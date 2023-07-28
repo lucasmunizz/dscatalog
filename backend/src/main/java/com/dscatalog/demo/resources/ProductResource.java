@@ -21,7 +21,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.dscatalog.demo.dto.ProductDTO;
 import com.dscatalog.demo.services.ProductService;
-
 @RestController
 @RequestMapping(value = "/products")
 public class ProductResource {
