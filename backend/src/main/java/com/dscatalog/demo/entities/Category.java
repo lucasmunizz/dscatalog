@@ -4,12 +4,14 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,6 +28,9 @@ public class Category implements Serializable {
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant updated_at;
+	
+	@ManyToMany(mappedBy = "categories")
+	private Set<Product> products;
 	
 	public Category() {
 	}
