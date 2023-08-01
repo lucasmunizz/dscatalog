@@ -1,16 +1,19 @@
 package com.dscatalog.demo.dto;
 
-public class InsertUserDTO extends UserDTO {
+import com.dscatalog.demo.services.validation.UserInsertValid;
+
+@UserInsertValid
+public class UserInsertDTO extends UserDTO {
 
 	private static final long serialVersionUID = 1L;
 	
 	private String password;
 	
-	public InsertUserDTO() {
+	public UserInsertDTO() {
 		super();
 	}
 	
-	public InsertUserDTO(String password) {
+	public UserInsertDTO(String password) {
 		super();
 		this.password = password;
 	}

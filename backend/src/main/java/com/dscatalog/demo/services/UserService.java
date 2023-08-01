@@ -13,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.dscatalog.demo.dto.InsertUserDTO;
+import com.dscatalog.demo.dto.UserInsertDTO;
 import com.dscatalog.demo.dto.RoleDTO;
 import com.dscatalog.demo.dto.UserDTO;
 import com.dscatalog.demo.entities.Role;
@@ -49,7 +49,7 @@ public class UserService {
 	}
 	
 	@Transactional
-	public UserDTO insert(InsertUserDTO dto) {
+	public UserDTO insert(UserInsertDTO dto) {
 		User entity = new User();
 		copyDtoToEntity(dto, entity);
 		entity.setPassword(hash.encode(dto.getPassword()));
